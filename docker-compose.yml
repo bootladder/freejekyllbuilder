@@ -1,0 +1,9 @@
+version: '3'
+services:
+  freejekyllbuilder:
+    container_name: freejekyllbuilder
+    build: .
+    volumes:
+      - ./server/:/opt/freejekyllbuilder
+      - ./files/:/opt/files
+      - ./boundary/:/opt/boundary

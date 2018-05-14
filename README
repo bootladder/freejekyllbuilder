@@ -1,0 +1,7 @@
+the docker-compose will volume mount the directories:
+files/  is where the audio message blobs get stored.
+boundary/  is where use cases are.  they are all executable.
+
+To use the server, make symlinks to where the files and boundary actually is
+
+The symlinks are not in the repository, you have to create them.
