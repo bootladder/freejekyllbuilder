@@ -86,7 +86,8 @@ def flaskprint(stupid):
 
 if __name__ == '__main__':
 		context = ('cert.crt', 'key.key')
-		app.run(debug = True,host='0.0.0.0', ssl_context=context, threaded=True, port=9002)
+		app.run(debug = True,host='0.0.0.0', threaded=True, port=9004)
+#ssl_context=context, 
 
 
 
