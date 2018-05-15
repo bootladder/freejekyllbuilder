@@ -9,6 +9,7 @@ services:
       - ./server/:/opt/freejekyllbuilder
       - ./files/:/opt/files
       - ./boundary/:/opt/boundary
+      - ./webroot/:/opt/webroot
     environment:
       - VIRTUAL_HOST=freejekyllbuilder.com,www.freejekyllbuilder.com
 

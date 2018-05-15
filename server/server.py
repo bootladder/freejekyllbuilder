@@ -63,7 +63,11 @@ def audiomessageapi_update():
 
 @app.route('/')
 def hello_world():
-    return send_from_directory('.', 'index.html')
+    return send_from_directory('/opt/webroot/', 'index.html')
+
+@app.route('/<path:path>')
+def hello_worldz(path):
+    return send_from_directory('/opt/webroot/', path)
 
 # Grabs stuff out of the HTTP Request
 # Executes Use Case, Gives Request Model to it
