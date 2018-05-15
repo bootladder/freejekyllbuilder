@@ -1,0 +1,37 @@
+#!/bin/bash
+set -e
+echo hello i am boundary bash, my argument is $1
+filepath=/opt/files/$1
+
+echo cd /opt/files/
+cd /opt/files/
+
+echo rm -rf temp
+rm -rf temp
+
+echo mkdir -p temp
+mkdir -p temp
+
+echo mv $filepath temp/a.zip
+mv $filepath temp/a.zip
+
+echo cd temp
+cd temp
+
+echo unzip a.zip
+unzip a.zip 
+
+#echo bundle install
+#bundle install
+
+echo jekyll build
+jekyll build
+
+echo ls;pwd
+ls;pwd
+
+echo zip -r _site.zip _site
+zip -r _site.zip _site
+echo mv _site.zip ../$1.zip
+mv _site.zip ../$1.zip
+

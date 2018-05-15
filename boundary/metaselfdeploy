@@ -1,0 +1,10 @@
+#!/bin/bash
+echo hello i am meta self deploy
+cd /tmp
+rm metaself
+rm -rf _site
+wget freejekyllbuilder.com/download/metaself
+unzip metaself
+cd _site
+mv * /opt/webroot/
+
