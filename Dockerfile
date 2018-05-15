@@ -26,6 +26,8 @@ WORKDIR /opt/install
 COPY ./requirements.txt  .
 RUN pip install -r requirements.txt
 
+RUN apk add zip
+
 # run app
 WORKDIR /opt/freejekyllbuilder
 CMD ["python","-u","server.py"]

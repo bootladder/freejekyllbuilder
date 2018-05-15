@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 services:
   freejekyllbuilder:
     container_name: freejekyllbuilder
@@ -9,3 +9,12 @@ services:
       - ./server/:/opt/freejekyllbuilder
       - ./files/:/opt/files
       - ./boundary/:/opt/boundary
+    environment:
+      - VIRTUAL_HOST=freejekyllbuilder.com,www.freejekyllbuilder.com
+
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
+

@@ -14,23 +14,56 @@ CORS(app)
 boundarypath = "/opt/boundary/"
 audiofilespath = "/opt/files/"
 
-@app.route('/audiomessageapi/audiomessageupload', methods = ['POST'])
-def upload_file():
-    resp = common_route_handler(request, 'upload')
-    return resp
+@app.route('/upload/<path:path>', methods = ['POST'])
+def upload_file(path):
+    flaskprint('\n\nUpload:  ' + path )
+    f = request.files.values()[0]
+    #pathtofile = audiofilespath+secure_filename(f.filename)
+    pathtofile = audiofilespath+path
+    f.save(pathtofile)
+    flaskprint('[route] Received a File, saved blob to'+pathtofile+'\n')
 
-@app.route('/audiomessagedownload/<path:path>')
+    # Execute Use Case 
+    p = Popen(['sh',boundarypath+'/'+'upload',path], 
+                      stdout=PIPE, stdin=PIPE, stderr=PIPE)
+    stdout_data,stderr_data  = p.communicate(input=pathtofile+'\n')
+    flaskprint('[UseCase Output] '+stdout_data)
+
+    # Check Exit Code of the boundary
+    if p.returncode != 0:
+        flaskprint("[UseCase Return Code != 0]: /"
+                      +'upload'+": Failed, stderr: "+stderr_data)
+        return flask.Response('The Use Case Failed, Brah', status=500)
+
+    return "response!"
+
+@app.route('/download/<path:path>')
 def send_js(path):
-    return send_from_directory(audiofilespath, path)
+    return send_from_directory(audiofilespath, path+'.zip',
+        as_attachment=True,attachment_filename=path+'.zip')
+
+@app.route('/metaselfdeploy',methods = ['POST','GET'])
+def metaselfdeploy():
+    p = Popen(['sh',boundarypath+'/'+'metaselfdeploy'], 
+                      stdout=PIPE, stdin=PIPE, stderr=PIPE)
+    stdout_data,stderr_data  = p.communicate(input='\n')
+    flaskprint('[UseCase Output] '+stdout_data)
+
+    # Check Exit Code of the boundary
+    if p.returncode != 0:
+        flaskprint("[UseCase Return Code != 0]: /"
+                      +'upload'+": Failed, stderr: "+stderr_data)
+        return flask.Response('The Use Case Failed, Brah', status=500)
+    return 'deployed!'
 		
-@app.route('/audiomessageapi/update',methods = ['POST'])
+@app.route('/status/<path:path>',methods = ['POST'])
 def audiomessageapi_update():
     resp = common_route_handler(request, 'update')
     return resp
 
 @app.route('/')
 def hello_world():
-		return 'blah2'
+    return send_from_directory('.', 'index.html')
 
 # Grabs stuff out of the HTTP Request
 # Executes Use Case, Gives Request Model to it
