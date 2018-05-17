@@ -15,9 +15,12 @@ wget freejekyllbuilder.com/download/metaself
 echo unzip metaself
 unzip metaself
 
-echo cd _site
-cd _site
 
-echo mv * /opt/webroot/
-mv * /opt/webroot/
+echo this happens in the container
+echo delete existing deploymenet
+rm -rf /opt/webroot/*
+echo deploy
+mv _site/* /opt/webroot/
+echo cleanup
+rm metaself
 
