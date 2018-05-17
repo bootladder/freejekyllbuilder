@@ -4,7 +4,7 @@ services:
     container_name: freejekyllbuilder
     build: .
     ports: 
-      - "9004:9004"
+      - "80:9004"
     volumes:
       - ./server/:/opt/freejekyllbuilder
       - ./files/:/opt/files
