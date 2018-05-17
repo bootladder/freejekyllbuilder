@@ -10,6 +10,7 @@ from subprocess import Popen, PIPE, STDOUT
 
 app = Flask(__name__)
 CORS(app)
+app.config['MAX_CONTENT_PATH'] = 1024*1024*128
 
 boundarypath = "/opt/boundary/"
 audiofilespath = "/opt/files/"
