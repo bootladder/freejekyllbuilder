@@ -21,11 +21,11 @@ cd temp
 echo unzip a.zip
 unzip a.zip 
 
-#echo bundle install
-#bundle install
+echo bundle install
+bundle install
 
-echo jekyll build
-jekyll build
+echo bundle exec jekyll build
+bundle exec jekyll build
 
 echo ls;pwd
 ls;pwd
