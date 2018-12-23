@@ -19,7 +19,7 @@ echo cd temp
 cd temp
 
 echo unzip a.zip
-unzip a.zip 
+unzip a.zip > /dev/null
 
 echo bundle install
 bundle install
@@ -31,7 +31,8 @@ echo ls;pwd
 ls;pwd
 
 echo zip -r _site.zip _site
-zip -r _site.zip _site
+zip -r _site.zip _site > /dev/null
+
 echo mv _site.zip ../$1.zip
 mv _site.zip ../$1.zip
 
