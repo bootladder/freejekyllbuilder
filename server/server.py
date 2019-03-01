@@ -18,7 +18,13 @@ audiofilespath = "/opt/files/"
 @app.route('/upload/<path:path>', methods = ['POST'])
 def upload_file(path):
     flaskprint('\n\nUpload:  ' + path )
-    f = request.files.values()[0]
+    if 'file' not in request.files:
+      return "not in there"
+
+    flaskprint('\n\nrequest.files:  ' + request.files['file'].filename )
+    return "hello"
+    #f = request.files.values()[0]
+    f = request.files['file']
     #pathtofile = audiofilespath+secure_filename(f.filename)
     pathtofile = audiofilespath+path
     f.save(pathtofile)
@@ -72,8 +78,10 @@ def flaskprint(stupid):
 
 if __name__ == '__main__':
 		context = ('cert.crt', 'key.key')
-		app.run(debug = True,host='0.0.0.0', threaded=True, port=9004)
-#ssl_context=context, 
+		app.run(debug = True,host='0.0.0.0', threaded=True, 
+    ssl_context=context, 
+    port=9004)
+
 
 
 
