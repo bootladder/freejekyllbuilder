@@ -1,5 +1,8 @@
 # A Free Jekyll Builder For You!
-    If you have multiple non-technical writers, building Jekyll sites locally is not an option, so you build on the cloud.  You can set up Travis to build your site, you can build on your own server, or you can use **freejekyllbuilder.com**.  (the site is not up at the moment)
+
+You don't need a ruby installation on your laptop to do jekyll builds.  Just use this!  
+
+If you have multiple non-technical writers, building Jekyll sites locally is not an option, so you build on the cloud.  You can set up Travis to build your site, you can build on your own server, or you can use **freejekyllbuilder.com**.  (the site is not up at the moment)
 
 **Build your site:**   
 
@@ -20,8 +23,4 @@ wget freejekyllbuilder.com/download/mygeneratedusername1
 **Deploy your site:**  
 You know what to do.  Unzip the _site and deploy the contents in your web root!
 
-
-
-You don't need a ruby installation on your laptop to do jekyll builds.  
-Just use this!  
 
