@@ -14,8 +14,9 @@ services:
       - VIRTUAL_HOST=freejekyllbuilder.com,www.freejekyllbuilder.com
 
 
-networks:
-  default:
-    external:
-      name: nginx-proxy
+## For use with nginx-proxy
+#networks:
+#  default:
+#    external:
+#      name: nginx-proxy
 
